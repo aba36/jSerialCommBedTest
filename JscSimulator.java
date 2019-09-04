@@ -1,9 +1,9 @@
 
-public class jscSimulator {
+public class JscSimulator {
 		
 	public static void main(String[] args)
 	{	
-		jscSerialGUI pocGUI = new jscSerialGUI();
+		JscSerialGUI pocGUI = new JscSerialGUI();
 		Thread guiThread = new Thread(pocGUI, "gui1");
 		
 		guiThread.start();
