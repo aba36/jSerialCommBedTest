@@ -5,11 +5,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Vector;
 
 import javax.swing.JButton;
@@ -19,7 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
-public class jscSerialGUI extends JFrame implements Runnable {
+public class JscSerialGUI extends JFrame implements Runnable {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel portsPanel;
@@ -27,7 +23,7 @@ public class jscSerialGUI extends JFrame implements Runnable {
 	private JPanel mainScreenPanel;
 	private JPanel instructionsPanel;
 	private JPanel portButtonPanel;
-	private jscSerialInterface serialDevice;
+	private JscSerialInterface serialDevice;
 	private JComboBox<String> ports;
 
 	private JButton connectButton;
@@ -50,7 +46,7 @@ public class jscSerialGUI extends JFrame implements Runnable {
 		// populated the pull down Box with port list
 		ports = new JComboBox<String>();
 		
-		jscPortScanner pScanner = new jscPortScanner();
+		JscPortScanner pScanner = new JscPortScanner();
 		final Vector<String> serialPorts = pScanner.getPorts();
 		
 		ports.addItem("----");
@@ -93,17 +89,16 @@ public class jscSerialGUI extends JFrame implements Runnable {
 				portName = serialPorts.elementAt(ports.getSelectedIndex() - 1);									
 
 				System.out.println("Connecting to: " + portName);
-				serialDevice = new jscSerialInterface(portName);
+				serialDevice = new JscSerialInterface(portName);
 				Thread readerThread = new Thread(serialDevice);
 				readerThread.start();
 				System.out.println("SerialGUI: thread started...");
 				
-				JLabel ldxTests = new JLabel("Close Port Testing");
-				JButton magReadButton = new JButton("Write data to port");
-				JButton ldxResultButton = new JButton("Close the port hangs");
+				JButton writeToPortButton = new JButton("Write to Port");
+				JButton closePortButton = new JButton("Close the Port");
 
 				
-				magReadButton.addActionListener(new ActionListener()
+				writeToPortButton.addActionListener(new ActionListener()
 				{
 
 					@Override
@@ -113,27 +108,35 @@ public class jscSerialGUI extends JFrame implements Runnable {
 				});
 				
 				
-				ldxResultButton.addActionListener(new ActionListener()
+				closePortButton.addActionListener(new ActionListener()
 				{
 					@Override
 					public void actionPerformed(ActionEvent arg0) {
 						 
 						//JS: calling closeConnection() in class jscSerialInterface
-						 boolean bb = serialDevice.jsserialPort.isOpen();
-						 System.out.println("BEGIN: close: isOpen=" + bb);
+
 						 try {
 							serialDevice.closeConnection();
-						} catch (IOException e) {
+						 } catch (IOException e) {
 							e.printStackTrace();
-						}
-						 System.out.println("END: close:");
+						 }
+						 
+						 
+						 if (serialDevice.jsserialPort == null) {
+							 // port was closed successfully
+							 ports.setSelectedIndex(0);
+							 ports.setEnabled(true);
+							 instructionsPanel.remove(writeToPortButton);
+							 instructionsPanel.remove(closePortButton);
+							 validate();
+							 repaint();
+						 }
 					}
 				});
 
 				
-				instructionsPanel.add(ldxTests);
-				instructionsPanel.add(magReadButton);
-				instructionsPanel.add(ldxResultButton);
+				instructionsPanel.add(writeToPortButton);
+				instructionsPanel.add(closePortButton);
 
 				connectButton.setEnabled(false);
 				ports.setEnabled(false);
@@ -172,7 +175,7 @@ public class jscSerialGUI extends JFrame implements Runnable {
 	}
 	
 	
-	public jscSerialGUI()
+	public JscSerialGUI()
 	{
 		this.setSize(800, 600);
 		this.setLayout(new BorderLayout());
