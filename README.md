@@ -27,10 +27,11 @@ Running the test:
 •	You want to run the test bed from within Eclipse, since the program prints to the console test messages.
 •	The test is GUI based. After you start the program, it scans the system for available ports and presents the ports list in a pulldown on the first screen. Select the free port, which is linked with the putty port, and click connect.
 •	You should see inside the Eclipse console the messages:
-o		Connecting to: COM5
-o		SerialGUI: thread started...
+o	Connecting to: COM5
+o	SerialGUI: thread started...
 •	If you see the above 2 messages, you have successfully connected to the port. On the next screen you should see two buttons: ‘Write to Port’ & ‘Close the Port’
 •	Write to Port – clicking on this button writes out the message “Sending text to port”, you should see it echoing inside the putty dumb terminal.
 •	Next type some string into the putty, you should see it echo inside the Eclipse console.
 •	Close the Port – clicking this button closes the port and puts you back to the port selection screen. I included it as an example to show how to properly close a serial port.
+
 
