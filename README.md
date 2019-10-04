@@ -10,10 +10,14 @@ Developers who start out with serial port communication, may find it daunting to
 
 
 Setup:
+
 --Tested System configuration: Windows 10 64bit, JDK 12 64bit, jSerialComm version 2.5.1 It was tested successfully on two different USB based serial devices: Digi Edgeport/4M, and TrippLite kespan model USA-19HS.
+
 --Project installation: There are 4 .java files. You will also need to link into the project the jar file jSerialComm-2.5.1.jar, which can be found at: https://fazecast.github.io/jSerialComm/
 The test bed was developed on Eclipse 64bit, which can be found at: https://www.eclipse.org/downloads/
+
 --To run the test: You will need two serial ports. One for the test bed and the other for a dumb terminal. I used putty to emulate a dumb terminal. Putty can be download from: https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
+
 --The project uses streams, getOutputStream() & getInputStream() to write & read data, and event-listener addDataListener() to activate the reads. The program is using threads.
 Running the test:
 
