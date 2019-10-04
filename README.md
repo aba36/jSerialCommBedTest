@@ -33,9 +33,9 @@ Running the test:
 
 •	You should see inside the Eclipse console the messages:
 
-  o	Connecting to: COM5
+      Connecting to: COM5
 
-  o	SerialGUI: thread started...
+      SerialGUI: thread started...
   
 •	If you see the above 2 messages, you have successfully connected to the port. On the next screen you should see two buttons: ‘Write to Port’ & ‘Close the Port’
 
