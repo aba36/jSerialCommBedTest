@@ -21,17 +21,28 @@ The test bed was developed on Eclipse 64bit, which can be found at: https://www.
 --The project uses streams, getOutputStream() & getInputStream() to write & read data, and event-listener addDataListener() to activate the reads. The program is using threads.
 Running the test:
 
-•	Once you set up the project in Eclipse do the following:
-•	Linkup the two ports with a serial cable.
+--Once you set up the project in Eclipse do the following:
+
+• Linkup the two ports with a serial cable.
+
 •	Connect putty to one of the two serial ports using the following configuration: Serial, COM-your#, 9600 baud, data bits 8, stop bits 1, parity none, flow control XON/XOFF.
+
 •	You want to run the test bed from within Eclipse, since the program prints to the console test messages.
+
 •	The test is GUI based. After you start the program, it scans the system for available ports and presents the ports list in a pulldown on the first screen. Select the free port, which is linked with the putty port, and click connect.
+
 •	You should see inside the Eclipse console the messages:
-o	Connecting to: COM5
-o	SerialGUI: thread started...
+
+  o	Connecting to: COM5
+
+  o	SerialGUI: thread started...
+  
 •	If you see the above 2 messages, you have successfully connected to the port. On the next screen you should see two buttons: ‘Write to Port’ & ‘Close the Port’
+
 •	Write to Port – clicking on this button writes out the message “Sending text to port”, you should see it echoing inside the putty dumb terminal.
+
 •	Next type some string into the putty, you should see it echo inside the Eclipse console.
+
 •	Close the Port – clicking this button closes the port and puts you back to the port selection screen. I included it as an example to show how to properly close a serial port.
 
 
