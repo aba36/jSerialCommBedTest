@@ -1,4 +1,4 @@
-# jSerialCommTestBed
+# jSerialComm-TestBed
 A note from the author:
 I first developed my serial interface code on RxTx, some 10 years ago. However, RxTx is no longer maintained and it doesn’t work on Windows 10 64bit with JDS 12 64bit. I was looking for a replacement and found jSerialComm to be an excellent choice. JSerialComm is simpler to use, self-contained, and works flawlessly on latest Windows and JDK 64bits. In addition, Will Hedgecock the author of jSerialComm is very attentive and immensely helpful in addressing any problem that might arises with the use of jSerialComm.
 
