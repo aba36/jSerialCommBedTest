@@ -19,6 +19,7 @@ The test bed was developed on Eclipse 64bit, which can be found at: https://www.
 --To run the test: You will need two serial ports. One for the test bed and the other for a dumb terminal. I used putty to emulate a dumb terminal. Putty can be download from: https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
 
 --The project uses streams, getOutputStream() & getInputStream() to write & read data, and event-listener addDataListener() to activate the reads. The program is using threads.
+
 Running the test:
 
 --Once you set up the project in Eclipse do the following:
